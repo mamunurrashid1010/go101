@@ -12,6 +12,7 @@ import (
 // --- EXAMPLE ---
 
 var course = "Go 101" // package-level variable
+const maxRetries = 5  // constant
 
 func main() {
 	fmt.Println("Welcome to", course)
@@ -49,6 +50,47 @@ func main() {
 		defer fmt.Println("deferred:", i)
 		fmt.Println("loop iteration:", i)
 	}
+
+	// Practice question
+	fmt.Println("PRACTICE QUESTIONS: ")
+
+	// Q1:
+	fmt.Println("maxRetries = ", maxRetries)
+
+	//Q2:
+	fmt.Println("6 is Even: ", isEven(6))
+	fmt.Println("3 is Even: ", isEven(3))
+	fmt.Println("10 is Even: ", isEven(10))
+
+	// Q3:
+	fmt.Println(greet("Mamunur Rashid"))
+
+	// Q4:
+	for i := 1; i <= 10; i++ {
+		if i%2 == 0 {
+			continue
+		}
+		fmt.Println("Odd number: ", i)
+	}
+
+	// Q5:
+	day := "Monday"
+	switch day {
+	case "Monday", "Tuesday", "Wednesday", "Thursday", "Friday":
+		fmt.Printf("%s is a weekday.\n", day)
+	case "Saturday", "Sunday":
+		fmt.Printf("%s is a weekend.\n", day)
+	default:
+		fmt.Println("Unknown day")
+	}
+
+	// Q6:
+	/*
+		Output: 2, 1, 0
+		Each defer pushes the call onto a stack with the current value of i captured as an argument.
+		When main() returns, the stack unwinds from the top, so the most recently deferred call (i=2) runs first.
+	*/
+
 }
 
 func add(a, b int) (int, error) {
@@ -57,6 +99,14 @@ func add(a, b int) (int, error) {
 		return 0, fmt.Errorf("negative sum: %d", sum)
 	}
 	return sum, nil
+}
+
+func isEven(n int) bool {
+	return n%2 == 0
+}
+
+func greet(name string) string {
+	return fmt.Sprintf("Hello, %s! Welcome to Go 101.", name)
 }
 
 // ============================================================
